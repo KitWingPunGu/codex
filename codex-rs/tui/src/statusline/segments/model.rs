@@ -75,6 +75,7 @@ fn simplify_model_name(name: &str) -> String {
     // 常见模型名称映射（与 model_presets.rs 保持一致）
     match name {
         // 当前模型
+        "gpt-5.4" => "GPT 5.4".to_string(),
         "gpt-5.3-codex" => "GPT 5.3 Codex".to_string(),
         "gpt-5.2-codex" => "GPT 5.2 Codex".to_string(),
         "gpt-5.1-codex-max" => "GPT 5.1 Codex Max".to_string(),
@@ -106,6 +107,7 @@ mod tests {
             "GPT 5.1 Codex Max"
         );
         // 测试模型名称映射
+        assert_eq!(simplify_model_name("gpt-5.4"), "GPT 5.4");
         assert_eq!(simplify_model_name("gpt-5.2-codex"), "GPT 5.2 Codex");
         assert_eq!(
             simplify_model_name("gpt-5.1-codex-max"),
