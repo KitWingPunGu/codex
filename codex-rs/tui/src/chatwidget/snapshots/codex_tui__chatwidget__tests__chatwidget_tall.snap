@@ -5,6 +5,7 @@ expression: term.backend().vt100().screen().contents()
 
 • Working (0s • esc to interrupt)
 
+• Queued follow-up messages
   ↳ Hello, world! 0
   ↳ Hello, world! 1
   ↳ Hello, world! 2
@@ -20,7 +21,6 @@ expression: term.backend().vt100().screen().contents()
   ↳ Hello, world! 12
   ↳ Hello, world! 13
   ↳ Hello, world! 14
-  ↳ Hello, world! 15
 ────────────────────────────────────────────────────────────────────────────────
 ❯ Ask Codex to do anything
 ────────────────────────────────────────────────────────────────────────────────
