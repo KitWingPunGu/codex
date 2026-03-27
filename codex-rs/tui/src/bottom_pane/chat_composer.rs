@@ -5339,6 +5339,7 @@ mod tests {
             install_url: Some("https://example.test/notion".to_string()),
             is_accessible: true,
             is_enabled: true,
+            plugin_display_names: Vec::new(),
         }];
         composer.set_connector_mentions(Some(ConnectorsSnapshot { connectors }));
 
@@ -5379,6 +5380,7 @@ mod tests {
             install_url: Some("https://example.test/notion".to_string()),
             is_accessible: true,
             is_enabled: false,
+            plugin_display_names: Vec::new(),
         }];
         composer.set_connector_mentions(Some(ConnectorsSnapshot { connectors }));
 

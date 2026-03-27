@@ -1275,6 +1275,7 @@ mod tests {
             .unwrap_or_else(|| "gpt-5.1".to_string());
         TurnContextItem {
             turn_id: None,
+            trace_id: None,
             cwd,
             current_date: None,
             timezone: None,
