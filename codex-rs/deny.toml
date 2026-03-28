@@ -76,6 +76,25 @@ ignore = [
     # TODO(fcoury): remove this exception when syntect drops yaml-rust and bincode, or updates to versions that have fixed the vulnerabilities.
     { id = "RUSTSEC-2024-0320", reason = "yaml-rust is unmaintained; pulled in via syntect v5.3.0 used by codex-tui for syntax highlighting; no fixed release yet" },
     { id = "RUSTSEC-2025-0141", reason = "bincode is unmaintained; pulled in via syntect v5.3.0 used by codex-tui for syntax highlighting; no fixed release yet" },
+    # aws-lc-sys 0.37.0: X.509/PKCS7/CRL/AES-CCM vulnerabilities in AWS-LC.
+    # Pulled in via rcgen -> rama-tls-rustls -> codex-network-proxy -> codex-core.
+    # Codex does not perform certificate chain/PKCS7/CRL validation or use AES-CCM; low practical impact.
+    # TODO: remove when rcgen/rama-tls-rustls upgrades aws-lc-rs.
+    { id = "RUSTSEC-2026-0044", reason = "aws-lc-sys X.509 Name Constraints bypass; indirect dep via rcgen/rama-tls-rustls; codex does not validate cert chains" },
+    { id = "RUSTSEC-2026-0045", reason = "aws-lc-sys AES-CCM timing side-channel; indirect dep via rcgen/rama-tls-rustls; codex does not use AES-CCM" },
+    { id = "RUSTSEC-2026-0046", reason = "aws-lc-sys PKCS7_verify chain validation bypass; indirect dep via rcgen/rama-tls-rustls; codex does not use PKCS7" },
+    { id = "RUSTSEC-2026-0047", reason = "aws-lc-sys PKCS7_verify signature bypass; indirect dep via rcgen/rama-tls-rustls; codex does not use PKCS7" },
+    { id = "RUSTSEC-2026-0048", reason = "aws-lc-sys CRL distribution point scope check error; indirect dep via rcgen/rama-tls-rustls; codex does not use CRL checking" },
+    # rustls-webpki 0.103.9: CRL distribution point matching logic error.
+    # Pulled in via rustls -> codex-client -> codex-core.
+    # Requires attacker to compromise a trusted CA; very low practical impact.
+    # TODO: remove when rustls upgrades rustls-webpki.
+    { id = "RUSTSEC-2026-0049", reason = "rustls-webpki CRL DP matching error; indirect dep via rustls; requires compromised CA to exploit" },
+    # tar 0.4.44: symlink chmod and PAX size header vulnerabilities.
+    # Pulled in via codex-package-manager -> codex-artifacts -> codex-core.
+    # TODO: remove when tar-rs releases a fix (>0.4.44).
+    { id = "RUSTSEC-2026-0067", reason = "tar unpack_in symlink chmod; indirect dep via codex-package-manager; risk limited to malicious tar archives" },
+    { id = "RUSTSEC-2026-0068", reason = "tar PAX size header ignored; indirect dep via codex-package-manager; risk limited to malicious tar archives" },
 ]
 # If this is true, then cargo deny will use the git executable to fetch advisory database.
 # If this is false, then it uses a built-in git library.
